@@ -8,17 +8,12 @@ export default class laberinto extends Phaser.Scene {
 
     preload() {
         this.load.tilemapTiledJSON
-        this.load.image("nave", "public/assets/boceto nave 1.png");
+        this.load.image
     }
 
     create() {
-
-        this.player = this.physics.add.sprite(400, 400, "nave");
-        this.player.setCollideWorldBounds(true);
-
         this.cursors = this.input.keyboard.createCursorKeys();
 
-        this.physics.add.collider(this.player, platformLayer);
     }
 
     update() {
