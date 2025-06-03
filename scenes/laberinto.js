@@ -4,6 +4,7 @@ export default class laberinto extends Phaser.Scene {
     }
 
     init() {
+        this.score = 0;
     }
 
     preload() {
@@ -18,13 +19,46 @@ export default class laberinto extends Phaser.Scene {
         const tileset = map.addTilesetImage("laberinto", "background","decoraciones");
         const laberintoLayer = map.createLayer("laberinto", tileset, 0, 0);
 
-        this.player = this.physics.add.sprite(50, 50, "cuadrado");
+        this.player = this.physics.add.sprite(350, 400, "cuadrado");
         
         this.cursors = this.input.keyboard.createCursorKeys();
+        this.restart = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
+
+        this.scoreText = this.add.text(16, 16, 'Score: 0', {
+            fontSize: '32px',
+            fill: '#fff'
+        });
+        this.scoreText.setScrollFactor(0);
+
+        this.victoryText = this.add.text(350, 400, "GANASTE", {
+            fontSize: '64px',
+            fill: '#00ff00'
+        }).setOrigin(0.5, 0.5).setVisible(false);
+
+        this.cameras.main.startFollow(this.player);
+        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
     }
 
     update() {
+        if (this.cursors.left.isDown) {
+            this.player.setVelocityX(-160);
+        } else if (this.cursors.right.isDown) {
+            this.player.setVelocityX(160);
+        } else {
+            this.player.setVelocityX(0);
+        }
 
+        if (this.cursors.up.isDown) {
+            this.player.setVelocityY(-160);
+        } else if (this.cursors.down.isDown) {
+            this.player.setVelocityY(160);
+        } else {
+            this.player.setVelocityY(0);
+        }
+
+        if (this.restart.isDown)
+            this.scene.restart();
+        }
+        
     }
-} 
