@@ -16,10 +16,16 @@ export default class laberinto extends Phaser.Scene {
 
     create() {
         const map = this.make.tilemap({ key: "mapa_de_laberinto" });
-        const tileset = map.addTilesetImage("laberinto", "background","decoraciones");
+        const tileset = map.addTilesetImage("tilemap", "tiles");
+        const tilesetBackground = map.addTilesetImage("tilemap-backgrounds", "background");
+        const backgroundLayer = map.createLayer("Background", tilesetBackground, 0, 0);
         const laberintoLayer = map.createLayer("laberinto", tileset, 0, 0);
+        laberintoLayer.setCollisionByProperty({ collides: true });
+        const objectsLayer = map.getObjectLayer("Objetos");
+       
+        this.player = this.physics.add.sprite(50, 50, "cuadrado");
 
-        this.player = this.physics.add.sprite(350, 400, "cuadrado");
+        this.physics.add.collider(this.player, laberintoLayer);
         
         this.cursors = this.input.keyboard.createCursorKeys();
         this.restart = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
