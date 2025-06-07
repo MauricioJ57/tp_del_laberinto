@@ -9,7 +9,6 @@ export default class laberinto extends Phaser.Scene {
 
     preload() {
         this.load.tilemapTiledJSON("mapa_de_laberinto", "public/assets/tilemap/mapa_de_laberinto.json");
-        this.load.image("background", "public/assets/tilemap-backgrounds.png");
         this.load.image("tiles", "public/assets/tilemap_packed.png");
         this.load.image("cuadrado", "public/assets/cuadrado_de_laberinto.png");
     }
@@ -64,7 +63,7 @@ export default class laberinto extends Phaser.Scene {
         }
 
         if (this.restart.isDown)
-            this.scene.restart();
+            this.scene.start("nivelpequeñojuego");
         }
         
     }
