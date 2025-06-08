@@ -182,6 +182,12 @@
          "imagewidth":360,
          "margin":0,
          "name":"tilemap_packed",
+         "properties":[
+                {
+                 "name":"collides",
+                 "type":"bool",
+                 "value":true
+                }],
          "spacing":0,
          "tilecount":180,
          "tileheight":18,
@@ -205,7 +211,7 @@
                                      "value":true
                                     }],
                              "rotation":0,
-                             "type":"limite_mapa",
+                             "type":"tilecolisionable1",
                              "visible":true,
                              "width":0,
                              "x":9,
@@ -216,7 +222,13 @@
                      "visible":true,
                      "x":0,
                      "y":0
-                    }
+                    },
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
                 }, 
                 {
                  "id":48,

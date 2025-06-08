@@ -242,8 +242,8 @@
                      "objects":[
                             {
                              "height":0,
-                             "id":1,
-                             "name":"caja",
+                             "id":2,
+                             "name":"",
                              "properties":[
                                     {
                                      "name":"collides",
@@ -251,7 +251,7 @@
                                      "value":true
                                     }],
                              "rotation":0,
-                             "type":"tilecolisionable3",
+                             "type":"tilecolisionable1",
                              "visible":true,
                              "width":0,
                              "x":8,
@@ -262,39 +262,22 @@
                      "visible":true,
                      "x":0,
                      "y":0
-                    }
+                    },
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
                 }, 
                 {
                  "id":82,
-                 "objectgroup":
-                    {
-                     "draworder":"index",
-                     "id":2,
-                     "name":"",
-                     "objects":[
-                            {
-                             "height":0,
-                             "id":1,
-                             "name":"borde de mapa",
-                             "properties":[
-                                    {
-                                     "name":"collides",
-                                     "type":"bool",
-                                     "value":true
-                                    }],
-                             "rotation":0,
-                             "type":"bordetilecolisonable",
-                             "visible":true,
-                             "width":0,
-                             "x":8,
-                             "y":7
-                            }],
-                     "opacity":1,
-                     "type":"objectgroup",
-                     "visible":true,
-                     "x":0,
-                     "y":0
-                    }
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
                 }],
          "tilewidth":18
         }],

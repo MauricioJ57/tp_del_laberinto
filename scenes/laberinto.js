@@ -11,19 +11,35 @@ export default class laberinto extends Phaser.Scene {
         this.load.tilemapTiledJSON("mapa_de_laberinto", "public/assets/tilemap/mapa_de_laberinto.json");
         this.load.image("tiles", "public/assets/tilemap_packed.png");
         this.load.image("cuadrado", "public/assets/cuadrado_de_laberinto.png");
+        this.load.image("estrella", "public/assets/estrella.png");
+        this.load.image("meta", "public/assets/meta.png");
     }
 
     create() {
         const map = this.make.tilemap({ key: "mapa_de_laberinto" });
-        const tileset = map.addTilesetImage("tilemap", "tiles");
-        const backgroundLayer = map.createLayer("Background", tileset, 0, 0);
-        const laberintoLayer = map.createLayer("laberinto", tileset, 0, 0);
+        const tileset = map.addTilesetImage("tilemap_packedr", "tiles");
+        const backgroundLayer = map.createLayer("backgroundr", tileset, 0, 0);
+        const decoracionesLayer = map.createLayer("decoracionesr", tileset, 0, 0);
+        const laberintoLayer = map.createLayer("laberintor", tileset, 0, 0);
         laberintoLayer.setCollisionByProperty({ collides: true });
         const objectsLayer = map.getObjectLayer("Objetos");
 
         const spawnPoint = objectsLayer.objects.find(obj => obj.name === "spawn1" || obj.name === "spawn" || obj.name === "spawnPoint");
 
         this.player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, "cuadrado");
+
+        this.estrella = this.physics.add.group()
+        this.meta = this.physics.add.group();
+
+        objectsLayer.objects.forEach((objData) => {
+            const { x = 0, y = 0, type, name } = objData;
+            if (type === "estrella" || name === "estrella") {
+                const estrella = this.estrella.create(x, y, "estrella");
+            }
+            if (type === "meta" || name === "meta") {
+                const meta = this.meta.create(x, y, "meta");
+            }
+        })
 
         //this.player = this.physics.add.sprite(50, 50, "cuadrado");
 
@@ -42,6 +58,12 @@ export default class laberinto extends Phaser.Scene {
             fontSize: '64px',
             fill: '#00ff00'
         }).setOrigin(0.5, 0.5).setVisible(false);
+
+        this.physics.add.overlap(this.player, this.estrella, (player, estrella) => {
+            estrella.destroy();
+            this.score += 10;
+            this.scoreText.setText('Score: ' + this.score);
+        });
 
         this.cameras.main.startFollow(this.player);
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
