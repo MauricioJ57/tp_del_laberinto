@@ -111,7 +111,7 @@ export default class nivel_pequeño extends Phaser.Scene {
         }
         
         if (this.restart.isDown) {
-            this.scene.start("niveltresjuego", { score: this.score });
+            this.scene.restart("laberintojuego");
         }
 
 

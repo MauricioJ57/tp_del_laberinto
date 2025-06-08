@@ -109,8 +109,9 @@ export default class nivel_tres extends Phaser.Scene {
         } else {
             this.player.setVelocityY(0);
         }
-
-        // Si quieres pasar el score a otra escena, usa:
-        // this.scene.start("nombreDeLaEscena", { score: this.score });
+        
+        if (this.restart.isDown) {
+            this.scene.restart("laberintojuego");
+        }
     }
 }

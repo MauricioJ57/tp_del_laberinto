@@ -115,7 +115,7 @@ export default class laberinto extends Phaser.Scene {
         }
 
         if (this.restart.isDown)
-            this.scene.start("nivelpequeñojuego", { score: this.score });
-        } // borrar mas adelante antes de la entrega
+            this.scene.restart("laberintojuego")
+        }
         
     }
