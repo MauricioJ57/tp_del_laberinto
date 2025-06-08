@@ -867,6 +867,12 @@
                  "id":37,
                  "name":"meta",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"meta",
+                         "type":"object",
+                         "value":37
+                        }],
                  "rotation":0,
                  "type":"finaldenivel",
                  "visible":true,
